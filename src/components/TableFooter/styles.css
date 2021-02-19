@@ -1,0 +1,9 @@
+.tfootContent {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionButton {
+  background-color: green;
+}

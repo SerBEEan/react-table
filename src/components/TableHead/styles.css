@@ -1,0 +1,10 @@
+thead th:hover {
+  cursor: pointer;
+}
+
+.sortDown::after {
+  content: '↓';
+  font-size: 25px;
+  border: 1px solid red;
+  transform: rotateX(180deg);
+}
