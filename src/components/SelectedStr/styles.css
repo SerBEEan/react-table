@@ -1,0 +1,7 @@
+.selectBlock {
+  box-sizing: border-box;
+  border: 1px solid red;
+  padding: 15px;
+  margin-top: 20px;
+  width: 100%;
+}

@@ -4,7 +4,8 @@ thead th:hover {
 
 .sortDown::after {
   content: '↓';
-  font-size: 25px;
-  border: 1px solid red;
-  transform: rotateX(180deg);
+}
+
+.sortUp::after {
+  content: '↑';
 }

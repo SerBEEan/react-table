@@ -1,12 +1,26 @@
+import { useState } from 'react'
 
+import './styles.css'
 
 export default function TableBody(props) {
-  const { strings } = props
+  const { strings, handleChooseStr } = props
+
+  const [lastNodeStr, setLastNodeStr] = useState(null)
+
+  function handleClickStr(event) {
+    const nodeStr = event.target.parentElement
+
+    lastNodeStr !== null && lastNodeStr.classList.remove('active')
+    nodeStr.classList.add('active')
+    setLastNodeStr(nodeStr)
+
+    handleChooseStr(nodeStr.dataset.json)
+  }
 
   return (
     <tbody>
       {strings.map((str) => (
-        <tr key={ str.id + str.phone }>
+        <tr key={ str.id + str.phone } onClick={ handleClickStr } data-json={ JSON.stringify(str) }>
           <td>{ str.id }</td>
           <td>{ str.firstName }</td>
           <td>{ str.lastName }</td>
