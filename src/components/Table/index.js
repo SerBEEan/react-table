@@ -7,7 +7,7 @@ import TableFooter from '../TableFooter'
 import './styles.css'
 
 export default function Table(props) {
-  let { data, handleChooseStr, handleOnClickSort, modeSort, nameColSort } = props
+  let { data, handleChooseStr, handleClickSort, modeSort, nameColSort } = props
 
   // Для перехода по страницам
   const [currentPage, setCurrentPage] = useState(1)
@@ -22,14 +22,14 @@ export default function Table(props) {
       <TableHead
         nameColSort={ nameColSort }
         modeSort={ modeSort }
-        handleOnClickSort={ handleOnClickSort }
+        handleClickSort={ handleClickSort }
       />
       <TableBody strings={ currentStrings } handleChooseStr={ handleChooseStr } />
       <TableFooter
         countSrings={ countSrings }
         currentPage={ currentPage }
         countPages={ countPages }
-        handleOnChangeCurrPage={ setCurrentPage }
+        handleChangeCurrPage={ setCurrentPage }
       />
     </table>
   )

@@ -46,12 +46,13 @@ export default function SectionData(props) {
 
         return result
       }
+      return false
     })
 
     return tmpArr
   }
 
-  function handleOnClickSort(nameCol) {
+  function handleClickSort(nameCol) {
     if (nameCol === nameColSort){                                   // Если сортируется тот же столбец
       modeSort === 'up' ? setModeSort('down') : setModeSort('up')
       data.reverse()
@@ -90,11 +91,11 @@ export default function SectionData(props) {
           <Loader />
         :
           <>
-            <SearchForm outHandleChangeValue={ setSearchingValue } />
+            <SearchForm handleChangeValue={ setSearchingValue } />
             <Table
               data={ filterData(data) }
               handleChooseStr={ setDataStr }
-              handleOnClickSort={ handleOnClickSort }
+              handleClickSort={ handleClickSort }
               modeSort={ modeSort }
               nameColSort={ nameColSort }
             />

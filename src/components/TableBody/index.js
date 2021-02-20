@@ -7,7 +7,7 @@ export default function TableBody(props) {
 
   const [lastNodeStr, setLastNodeStr] = useState(null)
 
-  function handleClickStr(event) {
+  function clickStr(event) {
     const nodeStr = event.target.parentElement
 
     lastNodeStr !== null && lastNodeStr.classList.remove('active')
@@ -20,7 +20,7 @@ export default function TableBody(props) {
   return (
     <tbody>
       {strings.map((str) => (
-        <tr key={ str.id + str.phone } onClick={ handleClickStr } data-json={ JSON.stringify(str) }>
+        <tr key={ str.id + str.phone } onClick={ clickStr } data-json={ JSON.stringify(str) }>
           <td>{ str.id }</td>
           <td>{ str.firstName }</td>
           <td>{ str.lastName }</td>

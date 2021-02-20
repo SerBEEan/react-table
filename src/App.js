@@ -10,9 +10,9 @@ import inputData from './input.json'
 // После заполнения всех инпутов активируется кнопка Добавить в таблицу которая вставляет заполненный ряд в начало таблицы
 
 function App() {
-  const [linkData, setLinkData] = useState("")
+  const [linkData, setLinkData] = useState('')
 
-  function handleChooseData(linkData) {
+  function chooseLinkData(linkData) {
     setLinkData(linkData)
   }
 
@@ -23,8 +23,8 @@ function App() {
           <>
             <p>Выберите набор данных</p>
             <div>
-              <button onClick={ handleChooseData.bind(null, inputData.linkData.small) }>Маленький</button>
-              <button onClick={ handleChooseData.bind(null, inputData.linkData.large) }>Большой</button>
+              <button onClick={ chooseLinkData.bind(null, inputData.linkData.small) }>Маленький</button>
+              <button onClick={ chooseLinkData.bind(null, inputData.linkData.large) }>Большой</button>
             </div>
           </>
         :

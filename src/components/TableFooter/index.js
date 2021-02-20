@@ -1,7 +1,7 @@
 import './styles.css'
 
 export default function TableFooter(props) {
-  const {currentPage, countPages, countSrings, handleOnChangeCurrPage} = props
+  const {currentPage, countPages, countSrings, handleChangeCurrPage} = props
 
 
   return (
@@ -9,7 +9,14 @@ export default function TableFooter(props) {
       <tr>
         <td colSpan="5">
           <div className="tfootContent">
-            <div>{ (currentPage-1)*50 + 1 } - { (currentPage-1)*50 + countSrings }</div>
+            <div>
+              {
+                countSrings !== 0 ?
+                  `${ (currentPage-1)*50 + 1 } - ${ (currentPage-1)*50 + countSrings }`
+                :
+                  '0'
+              }
+            </div>
             {
               countPages > 1 &&
                 <div className="buttons">
@@ -18,7 +25,7 @@ export default function TableFooter(props) {
                       <button
                         key={ index+1 }
                         className={ index+1 === currentPage ? "actionButton" : "" }
-                        onClick={ handleOnChangeCurrPage.bind(null, index+1) }
+                        onClick={ handleChangeCurrPage.bind(null, index+1) }
                       >
                         { index+1 }
                       </button>

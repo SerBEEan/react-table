@@ -3,7 +3,7 @@ import inputData from '../../input.json'
 import './styles.css'
 
 export default function TableHead(props) {
-  const { nameColSort, modeSort, handleOnClickSort } = props
+  const { nameColSort, modeSort, handleClickSort } = props
 
   return (
     <thead>
@@ -16,7 +16,7 @@ export default function TableHead(props) {
                   (modeSort === 'up' ? 'sortUp' : 'sortDown')
                 : ""
             }
-            onClick={ handleOnClickSort.bind(null, title) }
+            onClick={ handleClickSort.bind(null, title) }
           >
             { title }
           </th>

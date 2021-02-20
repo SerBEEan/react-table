@@ -3,22 +3,22 @@ import { useState, useEffect } from 'react'
 import './styles.css'
 
 export default function SearchForm(props) {
-  const { outHandleChangeValue } = props
+  const { handleChangeValue } = props
 
   const [valueInput, setValueInput] = useState('')
 
-  function handleChange(event) {
+  function inputOnChange(event) {
     setValueInput(event.target.value)
   }
 
   useEffect(() => {
-    outHandleChangeValue(valueInput)
+    handleChangeValue(valueInput)
   }, [valueInput])
 
   return (
     <div className="searchForm">
-      <input type="text" value={ valueInput } onChange={ handleChange } />
-      <button onClick={ outHandleChangeValue.bind(null, valueInput) }>Найти</button>
+      <input type="text" value={ valueInput } onChange={ inputOnChange } />
+      <button onClick={ handleChangeValue.bind(null, valueInput) }>Найти</button>
     </div>
   )
 }
