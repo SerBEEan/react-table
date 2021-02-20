@@ -5,6 +5,7 @@ import Loader from '../Loader'
 import Table from '../Table'
 import SelectedStr from '../SelectedStr'
 import SearchForm from '../SearchForm'
+import AddForm from '../AddForm'
 
 import inputData from '../../input.json'
 
@@ -52,6 +53,10 @@ export default function SectionData(props) {
     return tmpArr
   }
 
+  function handlePushInData(newData) {
+    setData( sorting(newData, nameColSort) )
+  }
+
   function handleClickSort(nameCol) {
     if (nameCol === nameColSort){                                   // Если сортируется тот же столбец
       modeSort === 'up' ? setModeSort('down') : setModeSort('up')
@@ -60,18 +65,20 @@ export default function SectionData(props) {
     else {                                                          // Если сортируется новый столбец
       setNameColSort(nameCol)
       setModeSort('down')
-      sorting(nameCol)
+      setData( sorting(data, nameCol) )
     }
   }
 
-  function sorting(col) {
+  function sorting(arr, col) {
+    const tmpArr = arr
+
     if (col === 'id') {
-      data.sort((a,b) => {
+      tmpArr.sort((a,b) => {
         return a.id-b.id
       })
     }
     else {
-      data.sort((a, b) => {
+      tmpArr.sort((a, b) => {
         if (a[col] > b[col]) {
           return 1;
         }
@@ -81,6 +88,8 @@ export default function SectionData(props) {
         return 0;
       })
     }
+
+    return tmpArr
   }
 
 
@@ -91,6 +100,7 @@ export default function SectionData(props) {
           <Loader />
         :
           <>
+            <AddForm data={ data } handlePushInData={ handlePushInData } />
             <SearchForm handleChangeValue={ setSearchingValue } />
             <Table
               data={ filterData(data) }

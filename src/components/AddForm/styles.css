@@ -1,0 +1,26 @@
+.formAdd {
+  width: 100%;
+}
+
+.formAdd div {
+  display: flex;
+  flex-direction: column;
+}
+
+.formAdd input:focus {
+  outline: none;
+  border: 1px solid rgba(184, 188, 247, 0.52);
+}
+
+.formAdd label {
+  margin: 10px 0;
+  width: 40%;
+}
+
+.fail {
+  background-color: rgb(245, 151, 142);
+}
+
+.success {
+  background-color: rgb(121, 247, 122)
+}
