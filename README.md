@@ -4,7 +4,7 @@
 ## Запуск
 Клонировать репозиторий
 ```
-git clone https://github.com/SerBEEan/react-task.git
+git clone https://github.com/SerBEEan/react-task.git && cd react-task
 ```
 \
 Без использования Docker:
