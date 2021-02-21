@@ -12,7 +12,7 @@ export default function SearchForm(props) {
   }
 
   useEffect(() => {
-    handleChangeValue(valueInput)
+    handleChangeValue(valueInput) // eslint-disable-next-line
   }, [valueInput])
 
   return (
