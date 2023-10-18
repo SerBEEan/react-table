@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-
 import { Loader } from '../Loader'
 import { Table } from '../Table'
 import { SelectedStr } from '../SelectedStr'
@@ -8,6 +6,8 @@ import { SearchForm } from '../SearchForm'
 import { AddForm } from '../AddForm'
 
 import config from '../../config.json'
+import miniData from '../../mini-data.json'
+import largeData from '../../large-data.json'
 
 import './styles.css'
 
@@ -23,13 +23,16 @@ export function SectionData({ linkData }) {
   const [modeSort, setModeSort] = useState('down')
 
   useEffect(() => {
-    axios
-      .get(linkData)
-      .then((res) => res.data)
-      .then((res) => {
-        setData( res.sort( (a, b) => a.id-b.id ) )
-      })
-      .catch(errMessage => console.error(errMessage))
+    // Тут был запрос на сервер
+    const timer = setTimeout(() => {
+      const data = linkData === 'large-data' ? largeData : miniData;
+      data.sort( (a, b) => a.id-b.id )
+      setData( data )  
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [linkData])
 
   function filterData(arr) {

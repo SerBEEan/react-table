@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://serbeean.github.io/react-task/",
+  "homepage": "https://serbeean.github.io/react-table/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +13,6 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
-    "axios": "^1.5.1",
     "classnames": "^2.3.2",
     "purecss": "^3.0.0",
     "react": "^18.2.0",

@@ -16,8 +16,8 @@ export function App() {
           <>
             <p>Выберите набор данных</p>
             <div className="Buttons">
-              <Button onClick={ () => setLinkData(config.linkData.small) }>Маленький</Button>
-              <Button onClick={ () => setLinkData(config.linkData.large) }>Большой</Button>
+              <Button onClick={ () => setLinkData('mini-data') }>Маленький</Button>
+              <Button onClick={ () => setLinkData('large-data') }>Большой</Button>
             </div>
           </>
         :
