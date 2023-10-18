@@ -1,4 +1,4 @@
-import inputData from '../../input.json'
+import config from '../../config.json'
 
 import './styles.css'
 
@@ -8,7 +8,7 @@ export function TableHead(props) {
   return (
     <thead>
       <tr>
-        { inputData.tableFields.map((title) => (
+        { config.tableFields.map((title) => (
           <th
             key={ title }
             className={

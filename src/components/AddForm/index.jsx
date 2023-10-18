@@ -1,7 +1,7 @@
 import { useState, Fragment } from 'react'
 import classNames from 'classnames';
 import { Button } from '../Button';
-import inputData from '../../input.json'
+import config from '../../config.json'
 
 import './styles.css'
 
@@ -126,7 +126,7 @@ export function AddForm({ data, handlePushInData }) {
       { isOpenForm &&
         <form className="pure-form AddFormBody pure-g">
         {
-          inputData.addInputs.map((input, index) => (
+          config.addInputs.map((input, index) => (
             <Fragment key={index}>
               <label className="pure-u-1-4" htmlFor={`form-${input.title}`}>
                 {input.title + ': '}

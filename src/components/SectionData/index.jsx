@@ -7,7 +7,7 @@ import { SelectedStr } from '../SelectedStr'
 import { SearchForm } from '../SearchForm'
 import { AddForm } from '../AddForm'
 
-import inputData from '../../input.json'
+import config from '../../config.json'
 
 import './styles.css'
 
@@ -34,8 +34,8 @@ export function SectionData({ linkData }) {
 
   function filterData(arr) {
     let tmpArr = arr.filter((str) => {
-      for (let i = 0; i < inputData.tableFields.length; i++) {
-        let result = str[ inputData.tableFields[i] ].toString().toLowerCase().includes(searchingValue.toLowerCase())
+      for (let i = 0; i < config.tableFields.length; i++) {
+        let result = str[ config.tableFields[i] ].toString().toLowerCase().includes(searchingValue.toLowerCase())
 
         if(!result)
           continue;
