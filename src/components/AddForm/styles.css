@@ -1,26 +1,21 @@
-.formAdd {
+.AddForm {
   width: 100%;
 }
 
-.formAdd div {
+.AddForm .AddFormBody {
+  row-gap: 0.5em;
+}
+
+.AddForm .AddFormControls {
+  margin-top: 1em;
   display: flex;
-  flex-direction: column;
+  gap: 1em;
 }
 
-.formAdd input:focus {
-  outline: none;
-  border: 1px solid rgba(184, 188, 247, 0.52);
-}
-
-.formAdd label {
-  margin: 10px 0;
-  width: 40%;
-}
-
-.fail {
+.AddFormFail {
   background-color: rgb(245, 151, 142);
 }
 
-.success {
+.AddFormSuccess {
   background-color: rgb(121, 247, 122)
 }

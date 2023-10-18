@@ -2,7 +2,7 @@ import inputData from '../../input.json'
 
 import './styles.css'
 
-export default function TableHead(props) {
+export function TableHead(props) {
   const { nameColSort, modeSort, handleClickSort } = props
 
   return (

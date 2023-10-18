@@ -1,24 +1,23 @@
 import { useState, useEffect } from 'react'
+import { Button } from '../Button';
 
 import './styles.css'
 
-export default function SearchForm(props) {
-  const { handleChangeValue } = props
-
+export function SearchForm({ handleChangeValue }) {
   const [valueInput, setValueInput] = useState('')
 
-  function inputOnChange(event) {
+  const inputOnChange = (event) => {
     setValueInput(event.target.value)
   }
 
   useEffect(() => {
-    handleChangeValue(valueInput) // eslint-disable-next-line
+    handleChangeValue(valueInput)
   }, [valueInput])
 
   return (
-    <div className="searchForm">
+    <div className="SearchForm pure-form">
       <input type="text" value={ valueInput } onChange={ inputOnChange } />
-      <button onClick={ handleChangeValue.bind(null, valueInput) }>Найти</button>
+      <Button onClick={ handleChangeValue.bind(null, valueInput) }>Найти</Button>
     </div>
   )
 }

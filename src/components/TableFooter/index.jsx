@@ -1,6 +1,6 @@
 import './styles.css'
 
-export default function TableFooter(props) {
+export function TableFooter(props) {
   const {currentPage, countPages, countSrings, handleChangeCurrPage} = props
 
 
@@ -20,17 +20,15 @@ export default function TableFooter(props) {
             {
               countPages > 1 &&
                 <div className="buttons">
-                  { Array(countPages).fill(0).map((_, index) => {
-                    return (
-                      <button
-                        key={ index+1 }
-                        className={ index+1 === currentPage ? "actionButton" : "" }
-                        onClick={ handleChangeCurrPage.bind(null, index+1) }
-                      >
-                        { index+1 }
-                      </button>
-                    )
-                  }) }
+                  { Array(countPages).fill(0).map((_, index) => (
+                    <button
+                      key={ index+1 }
+                      className={ index+1 === currentPage ? "actionButton" : "" }
+                      onClick={ handleChangeCurrPage.bind(null, index+1) }
+                    >
+                      { index+1 }
+                    </button>
+                  )) }
                 </div>
             }
           </div>

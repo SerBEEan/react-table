@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
+import classNames from 'classnames';
+import { Button } from '../Button';
+import inputData from '../../input.json'
 
 import './styles.css'
 
-import inputData from '../../input.json'
 
-export default function AddForm(props) {
-  const { data, handlePushInData } = props
-
+export function AddForm({ data, handlePushInData }) {
   const [isOpenForm, setIsOpenForm] = useState(false)
 
-  // Текстовые поля
   const [inputId, setInputId]                 = useState({ value: '', isSuccess: null })
   const [inputFirstName, setInputFirstName]   = useState({ value: '', isSuccess: null })
   const [inputLastName, setInputLastName]     = useState({ value: '', isSuccess: null })
@@ -66,17 +65,27 @@ export default function AddForm(props) {
   }
 
   function getStateInput(title) {
-    if (title === 'id') return inputId
-    else if (title === 'firstName') return inputFirstName
-    else if (title === 'lastName') return inputLastName
-    else if (title === 'email') return inputEmail
-    else if (title === 'phone') return inputPhone
+    return {
+      id: inputId,
+      firstName: inputFirstName,
+      lastName: inputLastName,
+      email: inputEmail,
+      phone: inputPhone,
+    }[title];
   }
 
-  function clickButtonOpen() {
-    if (isOpenForm) {                                     // Если форма уже открыта (кнопка нажата не первый раз)
+  const resetFields = () => {
+    setInputId({ value: '', isSuccess: null })
+    setInputFirstName({ value: '', isSuccess: null })
+    setInputLastName({ value: '', isSuccess: null })
+    setInputEmail({ value: '', isSuccess: null })
+    setInputPhone({ value: '', isSuccess: null })
+    setIsOpenForm(false)
+  };
 
-      // Добавление
+  const clickButtonOpen = () => {
+    // Если форма уже открыта, то происходит добавление
+    if (isOpenForm) {
       if (inputId.isSuccess && inputFirstName.isSuccess && inputLastName.isSuccess && inputEmail.isSuccess && inputPhone.isSuccess) {
         let elem = {
           id: Number.parseInt(inputId.value),
@@ -94,60 +103,56 @@ export default function AddForm(props) {
         }
 
         handlePushInData(data.concat(elem))
-
-        // Обнуление
-        setInputId({ value: '', isSuccess: null })
-        setInputFirstName({ value: '', isSuccess: null })
-        setInputLastName({ value: '', isSuccess: null })
-        setInputEmail({ value: '', isSuccess: null })
-        setInputPhone({ value: '', isSuccess: null })
-        setIsOpenForm(false)
+        resetFields();
+      } else {
+        !inputId.isSuccess && setInputId(prev => ({ ...prev , isSuccess: false }))
+        !inputFirstName.isSuccess && setInputFirstName(prev => ({ ...prev, isSuccess: false }))
+        !inputLastName.isSuccess && setInputLastName(prev => ({ ...prev, isSuccess: false }))
+        !inputEmail.isSuccess && setInputEmail(prev => ({ ...prev, isSuccess: false }))
+        !inputPhone.isSuccess && setInputPhone(prev => ({ ...prev, isSuccess: false }))
       }
-      else {
-        // Выделить пустые поля
-        !inputId.isSuccess && setInputId({ ...inputId , isSuccess: false })
-        !inputFirstName.isSuccess && setInputFirstName({ ...inputFirstName, isSuccess: false })
-        !inputLastName.isSuccess && setInputLastName({ ...inputLastName, isSuccess: false })
-        !inputEmail.isSuccess && setInputEmail({ ...inputEmail, isSuccess: false })
-        !inputPhone.isSuccess && setInputPhone({ ...inputPhone, isSuccess: false })
-      }
-
-
-    }
-    else {                                                // Если кнопка нажата первый раз
+    } else {
       setIsOpenForm(true)
     }
   }
 
+  const clickButtonClose = () => {
+    setIsOpenForm(false)
+    resetFields();
+  };
 
   return (
-    <div className="formAdd">
+    <div className="AddForm">
       { isOpenForm &&
-        <div>
+        <form className="pure-form AddFormBody pure-g">
         {
           inputData.addInputs.map((input, index) => (
-            <label key={ input.title + index }>{ `${ input.title }: ` }
+            <Fragment key={index}>
+              <label className="pure-u-1-4" for={`form-${input.title}`}>
+                {input.title + ': '}
+              </label>
               <input
-                type={ input.type }
+                className={classNames({
+                  [getStateInput(input.title).isSuccess ? "AddFormSuccess" : "AddFormFail"]: getStateInput(input.title).isSuccess !== null},
+                  'pure-u-3-4'
+                )}
+                id={`form-${input.title}`}
+                type={ input.type === 'phone' ? 'tel' : input.type }
                 name={ input.title }
                 value={ getStateInput(input.title).value }
                 onChange={ changeInput.bind(null, input.title) }
-                className={
-                  getStateInput(input.title).isSuccess === null ?
-                    ""
-                  :
-                    getStateInput(input.title).isSuccess ? "success" : "fail"
-                }
               />
-            </label>
+            </Fragment>
           ))
         }
-        </div>
+        </form>
       }
-      <button onClick={ clickButtonOpen }>Добавить</button>
-      {isOpenForm &&
-          <button onClick={ () => { setIsOpenForm(false) } }>Закрыть</button>
-      }
+      <div className="AddFormControls">
+        <Button onClick={ clickButtonOpen }>Добавить</Button>
+        {isOpenForm &&
+            <Button onClick={ clickButtonClose }>Закрыть</Button>
+        }
+      </div>
     </div>
   )
 }

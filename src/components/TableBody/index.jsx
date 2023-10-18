@@ -2,12 +2,12 @@ import { useState } from 'react'
 
 import './styles.css'
 
-export default function TableBody(props) {
+export function TableBody(props) {
   const { strings, handleChooseStr } = props
 
   const [lastNodeStr, setLastNodeStr] = useState(null)
 
-  function clickStr(event) {
+  const clickStr = (event) => {
     const nodeStr = event.target.parentElement
 
     lastNodeStr !== null && lastNodeStr.classList.remove('active')
@@ -15,6 +15,7 @@ export default function TableBody(props) {
     setLastNodeStr(nodeStr)
 
     handleChooseStr(nodeStr.dataset.json)
+    window.scrollTo(0, document.querySelector('.Container').scrollHeight)
   }
 
   return (

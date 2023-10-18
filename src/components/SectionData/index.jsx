@@ -1,28 +1,23 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import Loader from '../Loader'
-import Table from '../Table'
-import SelectedStr from '../SelectedStr'
-import SearchForm from '../SearchForm'
-import AddForm from '../AddForm'
+import { Loader } from '../Loader'
+import { Table } from '../Table'
+import { SelectedStr } from '../SelectedStr'
+import { SearchForm } from '../SearchForm'
+import { AddForm } from '../AddForm'
 
 import inputData from '../../input.json'
 
 import './styles.css'
 
-export default function SectionData(props) {
-  const { linkData } = props
-
+export function SectionData({ linkData }) {
   // Для приема данных
-  const [data, setData] = useState([])                          // Массив данных
-
+  const [data, setData] = useState([])
   // Для выбора строки
-  const [dataStr, setDataStr] = useState(null)                  // Выбранная строка
-
+  const [dataStr, setDataStr] = useState(null)
   // Для поиска
-  const [searchingValue, setSearchingValue] = useState('')      // Искомое значение (из формы поиска)
-
+  const [searchingValue, setSearchingValue] = useState('')
   // Для сортировки
   const [nameColSort, setNameColSort] = useState('id')
   const [modeSort, setModeSort] = useState('down')
@@ -37,7 +32,7 @@ export default function SectionData(props) {
       .catch(errMessage => console.error(errMessage))
   }, [linkData])
 
-  function filterData(arr) {                                    // Фильтрует
+  function filterData(arr) {
     let tmpArr = arr.filter((str) => {
       for (let i = 0; i < inputData.tableFields.length; i++) {
         let result = str[ inputData.tableFields[i] ].toString().includes(searchingValue)
@@ -58,11 +53,13 @@ export default function SectionData(props) {
   }
 
   function handleClickSort(nameCol) {
-    if (nameCol === nameColSort){                                   // Если сортируется тот же столбец
+    // Если сортируется тот же столбец
+    if (nameCol === nameColSort){
       modeSort === 'up' ? setModeSort('down') : setModeSort('up')
       data.reverse()
     }
-    else {                                                          // Если сортируется новый столбец
+    // Если сортируется новый столбец
+    else {
       setNameColSort(nameCol)
       setModeSort('down')
       setData( sorting(data, nameCol) )
@@ -94,7 +91,7 @@ export default function SectionData(props) {
 
 
   return (
-    <div className="container">
+    <div className="Container">
       {
         !data.length ?
           <Loader />

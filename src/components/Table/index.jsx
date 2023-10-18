@@ -1,12 +1,10 @@
 import { useState } from 'react'
 
-import TableHead from '../TableHead'
-import TableBody from '../TableBody'
-import TableFooter from '../TableFooter'
+import { TableHead } from '../TableHead'
+import { TableBody } from '../TableBody'
+import { TableFooter } from '../TableFooter'
 
-import './styles.css'
-
-export default function Table(props) {
+export function Table(props) {
   let { data, handleChooseStr, handleClickSort, modeSort, nameColSort } = props
 
   // Для перехода по страницам
@@ -18,7 +16,7 @@ export default function Table(props) {
 
 
   return (
-    <table border="1" cellPadding="15">
+    <table className="pure-table pure-table-horizontal" border="1" cellPadding="15" style={{ width: '100%' }}>
       <TableHead
         nameColSort={ nameColSort }
         modeSort={ modeSort }

@@ -1,8 +1,8 @@
 tbody tr:hover {
-  background-color: rgb(135, 137, 150);
+  background-color: #e5e5ff;
   cursor: pointer;
 }
 
 tbody tr.active {
-  background-color: rgb(135, 137, 150);
+  background-color: #e5e5ff;
 }

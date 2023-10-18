@@ -1,9 +1,11 @@
-.searchForm {
+.SearchForm {
   display: flex;
   width: 100%;
+  gap: 1em;
+  margin: 1em 0;
 }
 
-.searchForm input {
+.SearchForm input {
   padding: 5px;
   flex-grow: 1;
 }
