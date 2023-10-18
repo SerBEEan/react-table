@@ -35,7 +35,7 @@ export function SectionData({ linkData }) {
   function filterData(arr) {
     let tmpArr = arr.filter((str) => {
       for (let i = 0; i < inputData.tableFields.length; i++) {
-        let result = str[ inputData.tableFields[i] ].toString().includes(searchingValue)
+        let result = str[ inputData.tableFields[i] ].toString().toLowerCase().includes(searchingValue.toLowerCase())
 
         if(!result)
           continue;

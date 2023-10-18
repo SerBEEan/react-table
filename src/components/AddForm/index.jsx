@@ -128,7 +128,7 @@ export function AddForm({ data, handlePushInData }) {
         {
           inputData.addInputs.map((input, index) => (
             <Fragment key={index}>
-              <label className="pure-u-1-4" for={`form-${input.title}`}>
+              <label className="pure-u-1-4" htmlFor={`form-${input.title}`}>
                 {input.title + ': '}
               </label>
               <input
