@@ -6,7 +6,7 @@
 ## Запуск
 Клонировать репозиторий
 ```
-git clone https://github.com/SerBEEan/react-task.git && cd react-task
+git clone https://github.com/SerBEEan/react-table.git && cd react-table
 ```
 ```
 docker-compose build && docker-compose up
